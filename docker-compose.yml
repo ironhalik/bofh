@@ -1,0 +1,19 @@
+version: '3.6'
+services:
+  server:
+    image: bofh-server
+    build:
+      context: .
+    restart: unless-stopped
+    stop_grace_period: 1s
+    #volumes:
+    #  - ./:/code
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.bofh.frontend.rule=Host:deepspace.weinert.io;PathPrefix: /bofh"
+      - "traefik.port=80"
+networks:
+  traefik:
+    external: true
