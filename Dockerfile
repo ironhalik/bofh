@@ -1,9 +1,8 @@
-FROM alpine:3.10
+FROM python:3.11-alpine3.18
+
+RUN pip3 install flask fuzzywuzzy[speedup]
 
 ENV PYTHONUNBUFFERED=1
-
-RUN apk add --no-cache python3 python3-dev gcc musl-dev &&\
-    pip3 install flask fuzzywuzzy[speedup]
 
 EXPOSE 80
 

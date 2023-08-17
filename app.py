@@ -1,6 +1,7 @@
 from flask import Flask, json, Response, request
 from random import choice
 from fuzzywuzzy import fuzz, process
+from os import getenv
 
 app = Flask(__name__)
 
@@ -21,4 +22,4 @@ def bofh():
     return Response(response, mimetype="application/json")
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', 80, app, use_reloader=False, use_debugger=False, use_evalex=False)
+    app.run('0.0.0.0', int(getenv("PORT","80")))
